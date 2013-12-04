@@ -18,7 +18,7 @@
  * ========================================================= */
  
 !function( $ ) {
-	var id = 0;
+
 	var Slider = function(element, options) {
 		this.element = $(element);
 		this.picker = $('<div class="slider">'+
@@ -37,8 +37,7 @@
 						'</div>')
 							.insertBefore(this.element)
 							.append(this.element);
-
-		this.id = id++;
+		this.id = this.element.data('slider-id')||options.id;
 		if (this.id) {
 			this.picker[0].id = this.id;
 		}
@@ -125,10 +124,10 @@
 
 		this.layout();
 
-		this.picker.on(this.touchCapable ? 'touchstart.slider' : 'mousedown', $.proxy(this.mousedown, this));
+		this.picker.on(this.touchCapable ? 'touchstart' : 'mousedown', $.proxy(this.mousedown, this));
 	
 		if (tooltip === 'show') {
-			this.picker.on(this.touchCapable ? 'touchstart.slider' : 'mousedown', $.proxy(this.showTooltip, this));
+			this.picker.on(this.touchCapable ? 'touchstart' : 'mousedown', $.proxy(this.showTooltip, this));
 		}
 	};
 
@@ -210,8 +209,8 @@
 			this.percentage[this.dragged] = percentage;
 			this.layout();
 
-			$(document).on(this.touchCapable ? 'touchmove.slider.' + id : 'mousemove.slider', $.proxy(this.mousemove, this));
-			$(document).on(this.touchCapable ? 'touchend.slider.' + id : 'mouseup.slider', $.proxy(this.mouseup, this));
+			$(document).on(this.touchCapable ? 'touchmove' : 'mousemove', $.proxy(this.mousemove, this));
+			$(document).on(this.touchCapable ? 'touchend' : 'mouseup', $.proxy(this.mouseup, this));
 
 			this.inDrag = true;
 			var val = this.calculateValue();
@@ -256,8 +255,8 @@
 		},
 
 		mouseup: function(ev) {
-			$(document).off(this.touchCapable ? 'touchmove.slider.' + id : 'mousemove.slider.' + id);
-			$(document).off(this.touchCapable ? 'touchend.slider.' + id : 'mouseup.slider.' + id);
+			$(document).off(this.touchCapable ? 'touchmove' : 'mousemove', this.mousemove);
+			$(document).off(this.touchCapable ? 'touchend' : 'mouseup', this.mouseup);
 
 			this.inDrag = false;
 			if (this.over == false) {
@@ -331,9 +330,6 @@
 		},
 
 		destroy: function () {
-			$(document).off(this.touchCapable ? 'touchmove.slider.' + id : 'mousemove.slider.' + id);
-			$(document).off(this.touchCapable ? 'touchend.slider.' + id : 'mouseup.slider.' + id);
-
 			this.picker.off('.slider');
 			this.element.removeData('slider').off('.slider');
 			this.picker.replaceWith(this.element);

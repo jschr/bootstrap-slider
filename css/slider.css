@@ -44,11 +44,15 @@
   height: 100%;
   top: 0;
   bottom: 0;
+  -webkit-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out;
 }
 
 .slider-horizontal .slider-handle {
   margin-left: -13px;
   margin-top: -11px;
+  -webkit-transition: all 0.1s ease-out;
+          transition: all 0.1s ease-out;
 }
 
 .slider-horizontal .tooltip {
