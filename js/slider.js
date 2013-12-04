@@ -32,8 +32,8 @@
 								'<div class="slider-handle">' +
 									'<div class="slider-knob"></div>' +
 								'</div>'+
+								'<div class="tooltip fade"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'+
 							'</div>'+
-							'<div class="tooltip fade"><div class="tooltip-arrow"></div><div class="tooltip-inner"></div></div>'+
 						'</div>')
 							.insertBefore(this.element)
 							.append(this.element);
@@ -62,7 +62,7 @@
 				this.stylePos = 'top';
 				this.mousePos = 'pageY';
 				this.sizePos = 'offsetHeight';
-				this.tooltip.addClass('right')[0].style.left = '100%';
+				this.tooltip.addClass('right');
 				break;
 			default:
 				this.picker
@@ -73,7 +73,7 @@
 				this.stylePos = 'left';
 				this.mousePos = 'pageX';
 				this.sizePos = 'offsetWidth';
-				this.tooltip.addClass('top')[0].style.top = -this.tooltip.outerHeight() - 14 + 'px';
+				this.tooltip.addClass('top');
 				break;
 		}
 
@@ -94,9 +94,9 @@
 
 
 		this.handle1 = this.picker.find('.slider-handle:first');
-		this.handle1Stype = this.handle1[0].style;
+		this.handle1Style = this.handle1[0].style;
 		this.handle2 = this.picker.find('.slider-handle:last');
-		this.handle2Stype = this.handle2[0].style;
+		this.handle2Style = this.handle2[0].style;
 
 		if (this.range) {
 			this.value[0] = Math.max(this.min, Math.min(this.max, this.value[0]));
@@ -155,8 +155,8 @@
 		},
 
 		layout: function(){
-			this.handle1Stype[this.stylePos] = this.percentage[0]+'%';
-			this.handle2Stype[this.stylePos] = this.percentage[1]+'%';
+			this.handle1Style[this.stylePos] = this.percentage[0]+'%';
+			this.handle2Style[this.stylePos] = this.percentage[1]+'%';
 			if (this.orientation == 'vertical') {
 				this.selectionElStyle.top = Math.min(this.percentage[0], this.percentage[1]) +'%';
 				this.selectionElStyle.height = Math.abs(this.percentage[0] - this.percentage[1]) +'%';
@@ -170,12 +170,19 @@
 					' : ' + 
 					this.formater(this.value[1])
 				);
-				this.tooltip[0].style[this.stylePos] = this.size * (this.percentage[0] + (this.percentage[1] - this.percentage[0])/2)/100 - (this.orientation === 'vertical' ? this.tooltip.outerHeight()/2 : this.tooltip.outerWidth()/2) +'px';
+				console.log((this.percentage[0] + (this.percentage[1] - this.percentage[0])/2));
+				this.tooltip[0].style[this.stylePos] = (this.percentage[0] + (this.percentage[1] - this.percentage[0])/2) + '%';
+				// this.tooltip[0].style[this.stylePos] = this.size * (this.percentage[0] + (this.percentage[1] - this.percentage[0])/2)/100 - (this.orientation === 'vertical' ? this.tooltip.outerHeight()/2 : this.tooltip.outerWidth()/2) +'px';
 			} else {
 				this.tooltipInner.text(
 					this.formater(this.value[0])
 				);
-				this.tooltip[0].style[this.stylePos] = this.size * this.percentage[0]/100 - (this.orientation === 'vertical' ? this.tooltip.outerHeight()/2 : this.tooltip.outerWidth()/2) +'px';
+				this.tooltip[0].style[this.stylePos] = this.percentage[0] + '%';
+			}
+			if (this.orientation === 'vertical') {
+				this.tooltip[0].style.marginTop = -(this.tooltip.outerHeight() / 2) + 'px';
+			} else {
+				this.tooltip[0].style.marginLeft = -(this.tooltip.outerWidth() / 2) + 'px';
 			}
 		},
 

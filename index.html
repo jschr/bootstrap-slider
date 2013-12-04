@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="assets/css/bootstrap.css" />
+  <link rel="stylesheet" href="css/slider.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="span12">
+        <h1>Bootstrap-slider</h1>
+        <div style="padding: 20px">
+          <input type="text" class="slider" data-slider-value="5"><br />
+          <input type="text" class="slider" data-slider-value="[5, 8]"><br />
+          <input type="text" class="slider" data-slider-value="5" data-slider-orientation="vertical"><br />
+          <input type="text" class="slider" data-slider-value="[5, 8]" data-slider-orientation="vertical"><br />
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.js"></script>
+  <script src="js/slider.js"></script>
+  <script>
+    $(function () {
+      $('.slider').slider();
+    });
+  </script>
+</body>
+</html>
