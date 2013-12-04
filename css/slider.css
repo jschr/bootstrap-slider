@@ -47,12 +47,12 @@
 }
 
 .slider-horizontal .slider-handle {
-  margin-left: -10px;
+  margin-left: -13px;
   margin-top: -11px;
 }
 
 .slider-horizontal .tooltip {
-  top: -38px;
+  top: -42px;
 }
 
 .slider-vertical {
@@ -85,11 +85,11 @@
 
 .slider-vertical .slider-handle {
   margin-left: -11px;
-  margin-top: -10px;
+  margin-top: -13px;
 }
 
 .slider-vertical .tooltip {
-  left: 10px;
+  left: 14px;
 }
 
 .slider input,
