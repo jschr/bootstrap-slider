@@ -10,7 +10,6 @@
   display: inline-block;
   vertical-align: middle;
   position: relative;
-  margin-bottom: 10px
 }
 
 .slider[class*="span"] {
