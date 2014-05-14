@@ -3,6 +3,8 @@ Bootstrap Slider
 
 Fork of eyecon's [bootstrap-slider](http://www.eyecon.ro/bootstrap-slider/).
 
+[Demo](http://jschr.github.io/bootstrap-slider/)
+
 Changes
 ----------
 Current changes include:
